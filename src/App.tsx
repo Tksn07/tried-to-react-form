@@ -1,26 +1,19 @@
-import { useForm } from "react-hook-form";
+import { Form, Input, Button } from "antd";
 import "./App.css";
 
 function App() {
-  const { register, handleSubmit } = useForm();
-
-  const onSubmit = (data: any) => console.log(data);
+  const onFinish = (values: any) => console.log(values);
 
   return (
-    <div className="App">
-      <h1>ログイン</h1>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <div>
-          <label htmlFor="email">Email</label>
-          <input id="email" {...register("email")} />
-        </div>
-        <div>
-          <label htmlFor="password">Password</label>
-          <input id="password" {...register("password")} type="password" />
-        </div>
-        <button type="submit">ログイン</button>
-      </form>
-    </div>
+    <Form onFinish={onFinish}>
+      <Form.Item name="user" label="ユーザ名">
+        <Input />
+      </Form.Item>
+      <Form.Item name="password" label="パスワード">
+        <Input.Password />
+      </Form.Item>
+      <Button htmlType="submit">送信</Button>
+    </Form>
   );
 }
 
